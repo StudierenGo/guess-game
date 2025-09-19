@@ -15,10 +15,8 @@ func main() {
 
 	target := rand.Intn(100) + 1
 	fmt.Println("Я загадал число от 1 до 100. Попробуй угадать его?")
-	// fmt.Println("Введите ваше предположение: ")
-	fmt.Println(target) // Для тестирования, убрать в реальной игре
 
-	for i := 1; i < attempts; i += 1 {
+	for i := 1; i <= attempts; i += 1 {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Println("Введите ваше предположение: ")
 		input, err := reader.ReadString('\n')
@@ -37,9 +35,9 @@ func main() {
 		}
 
 		if guess < target {
-			fmt.Println("Ваше число меньше загаданного мною числа!")
+			fmt.Printf("Ваше число меньше загаданного мною числа! У Вас осталось %d попыток.\n", attempts-i)
 		} else if guess > target {
-			fmt.Println("Ваше число больше загаданного мною числа!")
+			fmt.Printf("Ваше число больше загаданного мною числа! У Вас осталось %d попыток.\n", attempts-i)
 		} else {
 			fmt.Printf("Поздравляю! Вы угадали число %d с %d попытки!\n", target, i)
 			success = true
@@ -48,6 +46,6 @@ func main() {
 	}
 
 	if !success {
-		fmt.Printf("К сожалению, вы исчерпали все попытки. Загаданное число было %d.\n", target)
+		fmt.Printf("К сожалению, Вы исчерпали все попытки. Загаданное мною число было - %d.\n", target)
 	}
 }
